@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "undetected-chromedriver"
+dynamic = ["version"]
+description = "Selenium.webdriver.Chrome replacement with advanced anti-detection features and async support"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "GPL-3.0"}
+authors = [
+    {name = "UltrafunkAmsterdam", email = "info@blackhat-security.nl"},
+    {name = "Vadim Khristenko", email = "via.by.vai@gmail.com"}
+]
+keywords = [
+    "selenium",
+    "chromedriver",
+    "automation",
+    "testing",
+    "playwright",
+    "async",
+    "asyncio"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Testing",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Framework :: AsyncIO",
+]
+dependencies = [
+    "selenium>=4.9.0",
+    "requests>=2.31.0",
+    "websockets>=12.0",
+    "playwright>=1.41.0",
+    "asyncio>=3.4.3",
+    "aiohttp>=3.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.23.0",
+    "black>=23.0.0",
+    "isort>=5.0.0",
+    "mypy>=1.0.0",
+    "pytest-playwright>=0.4.0",
+]
+async = [
+    "playwright>=1.41.0",
+    "asyncio>=3.4.3",
+    "aiohttp>=3.9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Vadim-Khristenko/undetected-chromedriver"
+Documentation = "https://github.com/Vadim-Khristenko/undetected-chromedriver/wiki"
+Repository = "https://github.com/Vadim-Khristenko/undetected-chromedriver.git"
+"Bug Tracker" = "https://github.com/Vadim-Khristenko/undetected-chromedriver/issues"
+
+[tool.black]
+line-length = 110
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+known_first_party = ["undetected_chromedriver"]
+known_third_party = ["selenium", "playwright", "asyncio"]
+
+[tool.mypy]
+python_version = "3.9"
+strict = true
+ignore_missing_imports = true
+plugins = ["playwright.mypy_plugin"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+markers = [
+    "async_test: marks tests as async",
+    "playwright: marks tests that require playwright",
+]

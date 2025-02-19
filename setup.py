@@ -1,65 +1,99 @@
 """
+!!! LEGACY INSTALLATION METHOD !!!
+This setup.py file is deprecated and will be removed in version 4.0.0
+Please use pyproject.toml instead for modern Python packaging.
 
-         888                                                  888         d8b
-         888                                                  888         Y8P
-         888                                                  888
- .d8888b 88888b.  888d888 .d88b.  88888b.d88b.   .d88b.   .d88888 888d888 888 888  888  .d88b.  888d888
-d88P"    888 "88b 888P"  d88""88b 888 "888 "88b d8P  Y8b d88" 888 888P"   888 888  888 d8P  Y8b 888P"
-888      888  888 888    888  888 888  888  888 88888888 888  888 888     888 Y88  88P 88888888 888
-Y88b.    888  888 888    Y88..88P 888  888  888 Y8b.     Y88b 888 888     888  Y8bd8P  Y8b.     888
- "Y8888P 888  888 888     "Y88P"  888  888  888  "Y8888   "Y88888 888     888   Y88P    "Y8888  888   88888888
-
-BY ULTRAFUNKAMSTERDAM (https://github.com/ultrafunkamsterdam)"""
+Undetected ChromeDriver - Selenium WebDriver compatibility for Chromium browsers with anti-detection
+"""
 
 import codecs
 import os
 import re
+import warnings
+from setuptools import setup, find_packages
 
-from setuptools import setup
-
-
-dirname = os.path.abspath(os.path.dirname(__file__))
-
-with codecs.open(
-    os.path.join(dirname, "undetected_chromedriver", "__init__.py"),
-    mode="r",
-    encoding="utf-8",
-) as fp:
-    try:
-        version = re.findall(r"^__version__ = ['\"]([^'\"]*)['\"]", fp.read(), re.M)[0]
-    except Exception:
-        raise RuntimeError("unable to determine version")
-
-description = (
-    "Selenium.webdriver.Chrome replacement with compatiblity for Brave, and other Chromium based browsers.",
-    "Not triggered by CloudFlare/Imperva/hCaptcha and such.",
-    "NOTE: results may vary due to many factors. No guarantees are given, except for ongoing efforts in understanding detection algorithms.",
+# Show deprecation warning
+warnings.warn(
+    "\nDEPRECATION WARNING: setup.py installation is deprecated and will be removed in version 4.0.0.\n"
+    "Please use pyproject.toml for installation. This is the modern way of Python packaging.",
+    DeprecationWarning,
+    stacklevel=2
 )
+
+def get_version():
+    """Get version from __init__.py"""
+    here = os.path.abspath(os.path.dirname(__file__))
+    with codecs.open(
+        os.path.join(here, "undetected_chromedriver", "__init__.py"),
+        mode="r",
+        encoding="utf-8",
+    ) as fp:
+        try:
+            return re.findall(r"^__version__ = ['\"]([^'\"]*)['\"]", fp.read(), re.M)[0]
+        except Exception:
+            raise RuntimeError("Unable to determine version.")
+
+def get_long_description():
+    """Get long description from README.md"""
+    here = os.path.abspath(os.path.dirname(__file__))
+    with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as f:
+        return f.read()
 
 setup(
     name="undetected-chromedriver",
-    version=version,
-    packages=["undetected_chromedriver"],
+    version=get_version(),
+    packages=find_packages(exclude=["tests*"]),
+    package_data={
+        "undetected_chromedriver": ["example/*.py"],
+    },
+    python_requires=">=3.9",
     install_requires=[
         "selenium>=4.9.0",
-        "requests",
-        "websockets",
+        "requests>=2.31.0",
+        "websockets>=12.0",
+        "playwright>=1.41.0",
+        "asyncio>=3.4.3",
+        "aiohttp>=3.9.0",
     ],
-    package_data={"undetected_chromedriver": [os.path.join("example", "example.py")]},
-    url="https://github.com/ultrafunkamsterdam/undetected-chromedriver",
+    extras_require={
+        "dev": [
+            "pytest>=7.0.0",
+            "pytest-asyncio>=0.23.0",
+            "black>=23.0.0",
+            "isort>=5.0.0",
+            "mypy>=1.0.0",
+            "pytest-playwright>=0.4.0",
+        ],
+        "async": [
+            "playwright>=1.41.0",
+            "asyncio>=3.4.3",
+            "aiohttp>=3.9.0",
+        ],
+    },
+    url="https://github.com/Vadim-Khristenko/undetected-chromedriver",
+    project_urls={
+        "Bug Tracker": "https://github.com/Vadim-Khristenko/undetected-chromedriver/issues",
+        "Source Code": "https://github.com/Vadim-Khristenko/undetected-chromedriver",
+        "Documentation": "https://github.com/Vadim-Khristenko/undetected-chromedriver",
+    },
     license="GPL-3.0",
-    author="UltrafunkAmsterdam",
-    author_email="info@blackhat-security.nl",
-    description=description,
-    long_description=open(os.path.join(dirname, "README.md"), encoding="utf-8").read(),
+    author="UltrafunkAmsterdam, Vadim Khristenko",
+    author_email="info@blackhat-security.nl, via.by.vai@gmail.com",
+    description="Selenium.webdriver.Chrome replacement with advanced anti-detection features and async support",
+    long_description=get_long_description(),
     long_description_content_type="text/markdown",
     classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Developers",
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Programming Language :: Python :: 3.8",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3 :: Only",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+        "Topic :: Software Development :: Testing",
+        "Topic :: Internet :: WWW/HTTP :: Browsers",
+        "Framework :: AsyncIO",
     ],
 )
