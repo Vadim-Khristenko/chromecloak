@@ -1,25 +1,30 @@
 #!/usr/bin/env python3
 
 """
+   _____ _                             _____ _             _    
+  / ____| |                           / ____| |           | |   
+ | |    | |__  _ __ ___  _ __ ___   | |    | | ___   __ _| | __
+ | |    | '_ \| '__/ _ \| '_ ` _ \  | |    | |/ _ \ / _` | |/ /
+ | |____| | | | | | (_) | | | | | | | |____| | (_) | (_| |   < 
+  \_____|_| |_|_|  \___/|_| |_| |_|  \_____|_|\___/ \__,_|_|\_\\
 
-         888                                                  888         d8b
-         888                                                  888         Y8P
-         888                                                  888
- .d8888b 88888b.  888d888 .d88b.  88888b.d88b.   .d88b.   .d88888 888d888 888 888  888  .d88b.  888d888
-d88P"    888 "88b 888P"  d88""88b 888 "888 "88b d8P  Y8b d88" 888 888P"   888 888  888 d8P  Y8b 888P"
-888      888  888 888    888  888 888  888  888 88888888 888  888 888     888 Y88  88P 88888888 888
-Y88b.    888  888 888    Y88..88P 888  888  888 Y8b.     Y88b 888 888     888  Y8bd8P  Y8b.     888
- "Y8888P 888  888 888     "Y88P"  888  888  888  "Y8888   "Y88888 888     888   Y88P    "Y8888  888   88888888
-
-by UltrafunkAmsterdam (https://github.com/ultrafunkamsterdam)
-
+ Modern Chrome automation with advanced anti-detection capabilities
+ Version 4.0.0-beta (2025) - https://github.com/Vadim-Khristenko/chromecloak
+ 
+ Based on the excellent work of undetected-chromedriver
+ (https://github.com/ultrafunkamsterdam/undetected-chromedriver)
 """
+
 from __future__ import annotations
 
+__version__ = "4.0.0-beta"
+__author__ = "Vadim Khristenko"
+__email__ = "via.by.vai@gmail.com"
+__github__ = "https://github.com/Vadim-Khristenko/chromecloak"
+__docs__ = "https://vadim-khristenko.github.io/chromecloak"
+__original_project__ = "https://github.com/ultrafunkamsterdam/undetected-chromedriver"
 
-__version__ = "3.5.6a"
-
-import json
+import orjson
 import logging
 import os
 import pathlib

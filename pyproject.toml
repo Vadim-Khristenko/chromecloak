@@ -3,14 +3,13 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "undetected-chromedriver"
+name = "chromecloak"
 dynamic = ["version"]
-description = "Selenium.webdriver.Chrome replacement with advanced anti-detection features and async support"
+description = "Modern anti-detection Chrome automation library inspired by undetected-chromedriver"
 readme = "README.md"
 requires-python = ">=3.9"
 license = {text = "GPL-3.0"}
 authors = [
-    {name = "UltrafunkAmsterdam", email = "info@blackhat-security.nl"},
     {name = "Vadim Khristenko", email = "via.by.vai@gmail.com"}
 ]
 keywords = [
@@ -20,7 +19,8 @@ keywords = [
     "testing",
     "playwright",
     "async",
-    "asyncio"
+    "stealth",
+    "anti-detection"
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -43,6 +43,7 @@ dependencies = [
     "playwright>=1.41.0",
     "asyncio>=3.4.3",
     "aiohttp>=3.9.0",
+    "orjson"
 ]
 
 [project.optional-dependencies]
@@ -61,10 +62,11 @@ async = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Vadim-Khristenko/undetected-chromedriver"
-Documentation = "https://github.com/Vadim-Khristenko/undetected-chromedriver/wiki"
-Repository = "https://github.com/Vadim-Khristenko/undetected-chromedriver.git"
-"Bug Tracker" = "https://github.com/Vadim-Khristenko/undetected-chromedriver/issues"
+Homepage = "https://github.com/Vadim-Khristenko/chromecloak"
+Documentation = "https://github.com/Vadim-Khristenko/chromecloak/wiki"
+Repository = "https://github.com/Vadim-Khristenko/chromecloak.git"
+"Bug Tracker" = "https://github.com/Vadim-Khristenko/chromecloak/issues"
+"Original Project" = "https://github.com/ultrafunkamsterdam/undetected-chromedriver"
 
 [tool.black]
 line-length = 110

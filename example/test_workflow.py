@@ -6,7 +6,7 @@ import os
 from selenium.webdriver.support.wait import WebDriverWait
 import selenium.webdriver.support.expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
-import undetected_chromedriver as uc 
+import chromecloak as uc 
 from pathlib import Path
 
 

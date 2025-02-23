@@ -8,7 +8,7 @@ import selenium.webdriver.support.expected_conditions as EC  # noqa
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-import undetected_chromedriver as uc
+import chromecloak as uc
 
 
 def main(args=None):

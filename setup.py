@@ -1,9 +1,11 @@
 """
-!!! LEGACY INSTALLATION METHOD !!!
-This setup.py file is deprecated and will be removed in version 4.0.0
-Please use pyproject.toml instead for modern Python packaging.
+ChromeCloak - Modern anti-detection Chrome automation library
+Inspired by and based on undetected-chromedriver
+(https://github.com/ultrafunkamsterdam/undetected-chromedriver)
 
-Undetected ChromeDriver - Selenium WebDriver compatibility for Chromium browsers with anti-detection
+!!! LEGACY INSTALLATION METHOD !!!
+This setup.py file is deprecated and will be removed in version 4.1.0
+Please use pyproject.toml instead for modern Python packaging.
 """
 
 import codecs
@@ -24,7 +26,7 @@ def get_version():
     """Get version from __init__.py"""
     here = os.path.abspath(os.path.dirname(__file__))
     with codecs.open(
-        os.path.join(here, "undetected_chromedriver", "__init__.py"),
+        os.path.join(here, "invisible-chromedriver", "__init__.py"),
         mode="r",
         encoding="utf-8",
     ) as fp:
@@ -40,11 +42,11 @@ def get_long_description():
         return f.read()
 
 setup(
-    name="undetected-chromedriver",
+    name="invisible-chromedriver",
     version=get_version(),
     packages=find_packages(exclude=["tests*"]),
     package_data={
-        "undetected_chromedriver": ["example/*.py"],
+        "invisible-chromedriver": ["example/*.py"],
     },
     python_requires=">=3.9",
     install_requires=[
@@ -54,6 +56,7 @@ setup(
         "playwright>=1.41.0",
         "asyncio>=3.4.3",
         "aiohttp>=3.9.0",
+        "orjson"
     ],
     extras_require={
         "dev": [
